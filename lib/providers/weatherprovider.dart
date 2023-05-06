@@ -3,11 +3,13 @@ import 'package:weather/models/weather_model.dart';
 
 class WeatherProvider extends ChangeNotifier {
   Weathermodel? _weatherdata;
-  set weatherData(Weathermodel? data) {
-    weatherData = data;
+  String? city_name;
+  set weatherdata(Weathermodel? data) {
+    _weatherdata = data;
     notifyListeners();
   }
-  Weathermodel? get weatherData{
+
+  Weathermodel? get weatherdata {
     return _weatherdata;
   }
 }

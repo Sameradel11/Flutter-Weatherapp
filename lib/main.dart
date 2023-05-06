@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather/models/weather_model.dart';
 import 'package:weather/providers/weatherprovider.dart';
 import 'package:weather/screens/home_page.dart';
-import 'package:weather/screens/search_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      child: const MyApp(), create: (context) => WeatherProvider()));
 }
-
-Weathermodel? provider;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -17,11 +14,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) {
-          return WeatherProvider();
-        },
-        child:
-            MaterialApp(debugShowCheckedModeBanner: false, home: Home_page()));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          primarySwatch: Provider.of<WeatherProvider>(context).weatherdata ==
+                  null
+              ? Colors.lightGreen
+              : Provider.of<WeatherProvider>(context).weatherdata!.gettheme()),
+      home: const Home_page(),
+    );
   }
 }
