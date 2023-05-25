@@ -67,8 +67,9 @@ class _Home_pageState extends State<Home_page> {
                             fontSize: 22,
                           )),
                       Text(
-                        DateFormat("  hh:mm ")
-                            .format(DateTime.parse(Weatherdata.date),),
+                        DateFormat("  hh:mm ").format(
+                          DateTime.parse(Weatherdata.date),
+                        ),
                         style: const TextStyle(
                           fontSize: 22,
                         ),

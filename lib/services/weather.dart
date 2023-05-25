@@ -7,14 +7,19 @@ import 'package:weather/models/weather_model.dart';
 class Weather {
   String baseurl = "https://api.weatherapi.com/v1";
 
-  Future<Weathermodel> getweathrt({required city_name}) async {
-    String cityy_name = city_name;
-    String api_key = "d09903072c3f492293513411232104";
-    String link = "$baseurl/forecast.json?key=$api_key&q=$cityy_name&days=7";
-    http.Response response = await http.get(Uri.parse(link));
-    Map<String, dynamic> data = jsonDecode(response.body);
-    Weathermodel weather_object = Weathermodel.fromjson(data);
-    print(weather_object.weatherState);
+  Future<Weathermodel?> getweathrt({required city_name}) async {
+    Weathermodel? weather_object;
+    try {
+      String cityy_name = city_name;
+      String api_key = "d09903072c3f492293513411232104";
+      String link = "$baseurl/forecast.json?key=$api_key&q=$cityy_name&days=7";
+      http.Response response = await http.get(Uri.parse(link));
+      Map<String, dynamic> data = jsonDecode(response.body);
+      weather_object = Weathermodel.fromjson(data);
+      print(weather_object.weatherState);
+    } catch (e) {
+      print(e);
+    }
     return weather_object;
 
     // String date = data["location"]["localtime"];

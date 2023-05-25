@@ -15,7 +15,7 @@ class Weathermodel {
   factory Weathermodel.fromjson(response) {
     var forecast = response["forecast"]["forecastday"][0]["day"];
     return Weathermodel(
-        date: DateTime.now().add(const Duration(hours: 1)).toString(),
+        date: DateTime.now().toString(),
         // date: response["location"]["localtime"],
         curr_temp: forecast["avgtemp_c"],
         max_temp: forecast['maxtemp_c'],
@@ -32,7 +32,7 @@ class Weathermodel {
     } else if (weatherState == 'Heavy Cloud') {
       return 'assets/images/cloudy.png';
     } else if (weatherState == 'Light Rain' ||
-        weatherState == 'Heavy Rain' ||
+        weatherState == 'Heavy rain' ||
         weatherState == 'Showers ' ||
         weatherState == "Patchy rain possible" ||
         weatherState == "Moderate rain") {
@@ -49,8 +49,8 @@ class Weathermodel {
       return Colors.cyan;
     } else if (weatherState == 'Sunny') {
       return Colors.amber;
-    } else if (weatherState == 'Light Rain' ||
-        weatherState == 'Heavy Rain' ||
+    } else if (weatherState == 'Light rain' ||
+        weatherState == 'Heavy rain' ||
         weatherState == 'Showers ' ||
         weatherState == "Patchy rain possible" ||
         weatherState == "Moderate rain") {
